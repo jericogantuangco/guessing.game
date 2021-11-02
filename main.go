@@ -1,6 +1,11 @@
 package main
 
 import(
+	"bufio"
+	"log"
+	"os"
+	"strconv"
+	"strings"
 	"fmt"
 	"math/rand"
 	"time"
@@ -13,5 +18,18 @@ func main() {
 	fmt.Println("I've chosen a random number between 1 and 100.")
 	fmt.Println("Can you guess it?")
 	fmt.Println(target)
-	fmt.Println("I am a change for project management")
+	
+	reader := bufio.NewReader(os.Stdin)
+
+	fmt.Print("Make a guess: ")
+	input, err := reader.ReadString('\n')
+	if err != nil {
+		log.Fatal(err)
+	}
+	input = strings.TrimSpace(input)
+	guess, err := strconv.Atoi(input)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(guess)
 }
